@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sudha_Mageshopifysync
+ *
+ * @category  Sudha
+ * @package   Sudha_Mageshopifysync
+ * @license   https://opensource.org/licenses/OSL-3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="sudha_mageshopifysync_check_delayed_orders"
+             instance="Sudha\Mageshopifysync\Cron\CheckDelayedOrders"
+             method="execute">
+            <config_path>sudha_mageshopifysync/alert/cron_schedule</config_path>
+        </job>
+    </group>
+</config>

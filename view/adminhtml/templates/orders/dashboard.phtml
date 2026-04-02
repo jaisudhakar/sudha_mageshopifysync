@@ -1,0 +1,85 @@
+<?php
+/**
+ * Sudha_Mageshopifysync
+ *
+ * @var \Sudha\Mageshopifysync\Block\Adminhtml\Orders\Dashboard $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<?php if (!$block->isModuleEnabled()): ?>
+<div class="message message-warning">
+    <?= $escaper->escapeHtml(__('Mage Shopify Sync is disabled. ')) ?>
+    <a href="<?= $escaper->escapeUrl($block->getConfigUrl()) ?>">
+        <?= $escaper->escapeHtml(__('Go to configuration')) ?>
+    </a>
+</div>
+<?php else: ?>
+
+<div class="admin__data-grid-wrap">
+    <div style="padding:16px 0 8px;">
+        <h2 style="font-size:18px;font-weight:600;margin:0 0 4px;">
+            <?= $escaper->escapeHtml(__('Shopify Delayed Shipments')) ?>
+        </h2>
+        <p style="color:#666;margin:0;">
+            <?= $escaper->escapeHtml(__(
+                'Orders from Shopify that have been in transit for more than %1 day(s).',
+                $block->getThresholdDays()
+            )) ?>
+            <a href="<?= $escaper->escapeUrl($block->getConfigUrl()) ?>">
+                <?= $escaper->escapeHtml(__('Change threshold')) ?>
+            </a>
+        </p>
+    </div>
+
+    <?php $orders = $block->getDelayedOrders(); ?>
+
+    <?php if (empty($orders)): ?>
+    <div class="message message-success" style="margin-top:16px;">
+        <?= $escaper->escapeHtml(__('No delayed shipments found. All orders are on track.')) ?>
+    </div>
+    <?php else: ?>
+    <div class="message message-warning" style="margin-top:16px;">
+        <?= $escaper->escapeHtml(__(
+            '%1 order(s) have been in transit for more than %2 day(s).',
+            count($orders),
+            $block->getThresholdDays()
+        )) ?>
+    </div>
+
+    <table class="data-grid" style="margin-top:16px;width:100%;border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th class="data-grid-th"><?= $escaper->escapeHtml(__('Order')) ?></th>
+                <th class="data-grid-th"><?= $escaper->escapeHtml(__('Customer')) ?></th>
+                <th class="data-grid-th"><?= $escaper->escapeHtml(__('Days in Transit')) ?></th>
+                <th class="data-grid-th"><?= $escaper->escapeHtml(__('Tracking Number')) ?></th>
+                <th class="data-grid-th"><?= $escaper->escapeHtml(__('Status')) ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($orders as $order): ?>
+            <tr>
+                <td><?= $escaper->escapeHtml($order['order_name']) ?></td>
+                <td><?= $escaper->escapeHtml($order['customer_name']) ?></td>
+                <td>
+                    <?php $days = (int)$order['days_in_transit']; ?>
+                    <span style="
+                        display:inline-block;padding:2px 10px;border-radius:12px;font-weight:600;
+                        background:<?= $days >= 10 ? '#fde8e8' : '#fff3cd' ?>;
+                        color:<?= $days >= 10 ? '#c00' : '#856404' ?>;">
+                        <?= $days ?> <?= $escaper->escapeHtml(__('days')) ?>
+                    </span>
+                </td>
+                <td><?= $escaper->escapeHtml($order['tracking_number'] ?: __('N/A')) ?></td>
+                <td>
+                    <span style="color:#856404;font-weight:500;">
+                        <?= $escaper->escapeHtml(__('In Transit')) ?>
+                    </span>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php endif; ?>
+</div>
+<?php endif; ?>

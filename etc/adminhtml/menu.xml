@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sudha_Mageshopifysync
+ *
+ * @category  Sudha
+ * @package   Sudha_Mageshopifysync
+ * @license   https://opensource.org/licenses/OSL-3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sudha_Mageshopifysync::main"
+             title="Mage Shopify Sync"
+             module="Sudha_Mageshopifysync"
+             sortOrder="100"
+             resource="Sudha_Mageshopifysync::main"
+             parent="Magento_Backend::stores"/>
+
+        <add id="Sudha_Mageshopifysync::orders"
+             title="Delayed Orders"
+             module="Sudha_Mageshopifysync"
+             sortOrder="10"
+             action="mageshopifysync/orders/index"
+             resource="Sudha_Mageshopifysync::orders"
+             parent="Sudha_Mageshopifysync::main"/>
+    </menu>
+</config>

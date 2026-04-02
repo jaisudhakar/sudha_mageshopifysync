@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sudha_Mageshopifysync
+ *
+ * @category  Sudha
+ * @package   Sudha_Mageshopifysync
+ * @license   https://opensource.org/licenses/OSL-3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="sudha_mageshopifysync_alert_email_template"
+              label="Shopify Delayed Shipment Alert"
+              file="sudha_mageshopifysync_alert.html"
+              type="html"
+              module="Sudha_Mageshopifysync"
+              area="adminhtml"/>
+</config>

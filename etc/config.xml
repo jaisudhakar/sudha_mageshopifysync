@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sudha_Mageshopifysync
+ *
+ * @category  Sudha
+ * @package   Sudha_Mageshopifysync
+ * @license   https://opensource.org/licenses/OSL-3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sudha_mageshopifysync>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <shopify>
+                <api_key></api_key>
+                <api_secret></api_secret>
+                <store_url></store_url>
+                <api_version>2024-01</api_version>
+            </shopify>
+            <alert>
+                <threshold_days>5</threshold_days>
+                <alert_email></alert_email>
+                <email_template>sudha_mageshopifysync_alert_email_template</email_template>
+                <cron_schedule>0 8 * * *</cron_schedule>
+            </alert>
+        </sudha_mageshopifysync>
+    </default>
+</config>
